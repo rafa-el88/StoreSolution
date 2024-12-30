@@ -1,0 +1,16 @@
+@import '../styles/custom-variables';
+
+@import 'bootswatch/dist/journal/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootswatch_fix/journal'; // import from 'bootswatch/dist/journal/bootswatch' when font import issue is fixed
+
+@import 'app-theme';
+
+
+.about-page {
+  .bg-features {
+    .logo {
+      color: $primary !important;
+    }
+  }
+}

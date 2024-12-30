@@ -1,0 +1,19 @@
+@import '../styles/custom-variables';
+
+@import 'bootswatch/dist/pulse/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootswatch/dist/pulse/bootswatch';
+
+@import 'app-theme';
+
+
+.icon-addon #searchInput.form-control {
+  border-radius: 0;
+}
+
+
+.app-component {
+  main {
+    padding-top: 90px !important;
+  }
+}

@@ -1,0 +1,68 @@
+.row:not(:last-child) {
+  /*border-bottom: 1px solid #ccc;*/
+}
+
+@mixin hr-dashed($margin: 10px 5px ) {
+  margin: $margin;
+  border-top: 1px dashed currentColor;
+  background-color: inherit;
+}
+
+.info-separator {
+  @include hr-dashed(0 5px);
+}
+
+.edit-separator {
+  @include hr-dashed;
+}
+
+.hr-password-separator {
+  margin: 4px;
+  border-style: none;
+  height: 0;
+}
+
+.last-separator {
+  margin-top: 5px;
+}
+
+.last-edit-separator {
+  margin-top: 15px;
+}
+
+input.form-control {
+  border-left-width: 5px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.password-well {
+  padding: 0.5rem;
+}
+
+.hint-sm {
+  display: block;
+}
+
+.form-check.user-enabled {
+  display: inline-block;
+}
+
+.unblock-user {
+  margin-left: 34px;
+}
+
+.send-confirm-email {
+  padding: 0;
+  vertical-align: inherit;
+  font-size: 80%;
+}
+
+
+@media (min-width: 992px) {
+  .user-enabled {
+    margin-left: 40px;
+  }
+}

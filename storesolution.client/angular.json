@@ -1,0 +1,247 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "StoreSolution.client": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/StoreSolution.client",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/app/assets/themes/cerulean.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/cosmo.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/flatly.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/journal.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/lumen.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/minty.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/pulse.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/sketchy.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/slate.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/solar.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/spacelab.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/superhero.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/united.scss",
+                "inject": false
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": [
+                  "import",
+                  "global-builtin"
+                ]
+              }
+            },
+            "scripts": [
+              "src/app/assets/scripts/alertify.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kb",
+                  "maximumError": "8kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "StoreSolution.client:build:production"
+            },
+            "development": {
+              "buildTarget": "StoreSolution.client:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "src/proxy.conf.js"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/app/assets/themes/cerulean.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/cosmo.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/flatly.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/journal.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/lumen.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/minty.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/pulse.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/sketchy.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/slate.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/solar.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/spacelab.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/superhero.scss",
+                "inject": false
+              },
+              {
+                "input": "src/app/assets/themes/united.scss",
+                "inject": false
+              }
+            ],
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ],
+    "analytics": false
+  }
+}

@@ -1,0 +1,63 @@
+$footerHeight: 40px;
+
+.app-container {
+  height: 100%;
+}
+
+main {
+  height: calc(100% - #{$footerHeight});
+  padding-top: 60px;
+}
+
+.footer-height {
+  height: $footerHeight;
+}
+
+footer {
+  width: 100%;
+  height: $footerHeight;
+  line-height: $footerHeight;
+  background-color: #f5f5f5;
+}
+
+.navbar-brand > img {
+  height: 30px;
+}
+
+.navbar .nav-pills a:focus,
+.navbar .nav-pills a:hover {
+  color: #575757;
+}
+
+.navbar .nav-pills > .active > a,
+.navbar .nav-pills > .active > a:hover,
+.navbar .nav-pills > .active > a:focus {
+  background-color: #efefef;
+  color: #808080;
+}
+
+.navbar .nav-link,
+.navbar .navbar-text {
+  color: white;
+}
+
+
+.navbar .nav-pills > li > a {
+  font-weight: bold;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+
+@media screen and (max-width: 991px) {
+  .navbar .nav-pills > li + li {
+    margin-left: 0;
+    margin-top: 1px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar .nav-pills > li + li {
+    margin-left: 2px;
+  }
+}

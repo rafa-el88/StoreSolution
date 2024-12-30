@@ -1,0 +1,45 @@
+@import '../styles/custom-variables';
+
+$table-bg-scale: 0% !default; // Fix for deprecation: https://sass-lang.com/d/function-units
+
+@import 'bootswatch/dist/solar/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootswatch_fix/solar'; // import from 'bootswatch/dist/solar/bootswatch' when font import issue is fixed
+
+@import 'app-theme';
+
+.ngx-datatable.material {
+  &.table-striped {
+    .datatable-row-even {
+      background: $dark;
+    }
+  }
+}
+
+.tooltip {
+  --bs-tooltip-color: #fff;
+}
+
+
+.bg-light {
+  background-color: #04272f !important;
+}
+
+
+.app-component {
+  .login-container .form-check-input {
+    border-color: var(--bs-body-color);
+  }
+
+  footer {
+    background-color: #073642 !important;
+  }
+}
+
+.about-page {
+  .bg-features {
+    .logo {
+      color: #073642 !important;
+    }
+  }
+}

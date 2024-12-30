@@ -1,0 +1,34 @@
+
+.ngx-datatable.material {
+  &.colored-header {
+    .datatable-header {
+      padding: .5rem 0;
+      color: map-get($theme-colors, "light");
+      background-color: map-get($theme-colors, "primary");
+    }
+  }
+}
+
+.nav-tabs {
+  &--left {
+    .nav-link.active {
+      border-right-color: $body-bg !important;
+
+      &:hover {
+        border-right-color: $body-bg !important;
+      }
+    }
+  }
+}
+
+
+.about-page {
+  .bg-features {
+    @if $enable-rounded {
+      border-radius: $border-radius !important;
+    }
+    @else {
+      border-radius: 0 !important;
+    }
+  }
+}

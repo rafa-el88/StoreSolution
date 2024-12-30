@@ -1,0 +1,75 @@
+<div class="d-flex h-90">
+  <div class="login-container m-auto">
+    <div class="card boxshadow">
+      <div class="card-header bg-primary text-white">
+        <i class="fa fa-lock" aria-hidden="true"></i> Login
+        @if (isModal) {
+          <button type="button" class="btn-close btn-close-white fs-sm float-end" aria-label="Close"
+                  (click)="closeModal()" tabindex="-1"></button>
+        }
+      </div>
+      <div class="card-body">
+        <div class="col-md-10 offset-md-1 px-md-3">
+          @if (formResetToggle) {
+            <form class="login" name="loginForm" #f="ngForm" novalidate
+                  (ngSubmit)="f.form.valid ? login() :
+                            (!username.valid && showErrorAlert('Nome do usuário é obrigatório', 'Por favor, digite um nome de usuário válido!'));
+                            (!password.valid && showErrorAlert('Senha é obrigatória!', 'Por favor, insira uma senha válida.'))">
+              <div class="mb-3 row">
+                <label class="col-form-label text-md-end col-md-4" for="login-username">Usuário:</label>
+                <div class="col-md-8">
+                  <input type="text" id="login-username" name="username" placeholder="Digite seu usuário"
+                         autocomplete="username" class="form-control"
+                         [ngClass]="{'is-valid': f.submitted && username.valid, 'is-invalid' : f.submitted && !username.valid}"
+                         [(ngModel)]="userLogin.userName" #username="ngModel" required />
+                  @if (f.submitted && !username.valid) {
+                    <span class="invalid-feedback">
+                      Username is required
+                    </span>
+                  }
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-form-label text-md-end col-md-4" for="login-password">Senha:</label>
+                <div class="col-md-8">
+                  <input type="password" id="login-password" name="password" placeholder="Digite sua senha"
+                         autocomplete="current-password" class="form-control"
+                         [ngClass]="{'is-valid': f.submitted && password.valid, 'is-invalid' : f.submitted && !password.valid}"
+                         [(ngModel)]="userLogin.password" #password="ngModel" required />
+                  @if (f.submitted && !password.valid) {
+                    <span class="invalid-feedback">
+                      Password is required
+                    </span>
+                  }
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="offset-md-4 col-md-8">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="login-rememberme" name="rememberMe"
+                           [(ngModel)]="userLogin.rememberMe">
+                    <label class="form-check-label" for="login-rememberme">Lembre de mim</label>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="offset-md-4 col-md-8">
+                  <div class="d-flex align-items-stretch">
+                    <button type="submit" class="btn btn-primary text-nowrap" [disabled]="isLoading">
+                      @if (isLoading) {
+                        <i class='fa fa-circle-o-notch fa-spin'></i> {{'Logging in...'}}
+                      }
+                      @else {
+                        {{'Login'}}
+                      }
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

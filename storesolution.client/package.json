@@ -1,0 +1,76 @@
+{
+  "name": "storesolution.client",
+  "version": "9.19.0",
+  "description": "ASP.NET Core 9.0/Angular 19.",
+  "author": {
+    "name": "Rafael Rodrigues",
+    "email": "rafaa.cfc@gmail.com"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/rafa-el88/StoreSolution.git",
+  "scripts": {
+    "ng": "ng",
+    "start": "run-script-os",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "prestart": "node aspnetcore-https",
+    "start:windows": "ng serve --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\" --host=127.0.0.1",
+    "start:default": "ng serve --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\" --host=127.0.0.1"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.0.1",
+    "@angular/cdk": "^19.0.1",
+    "@angular/common": "^19.0.1",
+    "@angular/compiler": "^19.0.1",
+    "@angular/core": "^19.0.1",
+    "@angular/forms": "^19.0.1",
+    "@angular/platform-browser": "^19.0.1",
+    "@angular/platform-browser-dynamic": "^19.0.1",
+    "@angular/router": "^19.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
+    "@ng-select/ng-select": "^14.1.0",
+    "@ngx-translate/core": "^16.0.3",
+    "@popperjs/core": "^2.11.8",
+    "@siemens/ngx-datatable": "^22.4.1",
+    "bootstrap": "^5.3.3",
+    "bootswatch": "^5.3.3",
+    "chart.js": "^4.4.6",
+    "font-awesome": "^4.7.0",
+    "jest-editor-support": "*",
+    "ng2-charts": "^7.0.0",
+    "ngx-toasta": "^4.0.0",
+    "run-script-os": "*",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "overrides": {
+    "@ng-bootstrap/ng-bootstrap": {
+      "@angular/common": "$@angular/common",
+      "@angular/core": "$@angular/core",
+      "@angular/forms": "$@angular/forms",
+      "@angular/localize": "$@angular/localize"
+    }
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.0.2",
+    "@angular/cli": "^19.0.2",
+    "@angular/compiler-cli": "^19.0.1",
+    "@angular/localize": "^19.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^22.10.1",
+    "angular-eslint": "19.0.0",
+    "eslint": "^9.15.0",
+    "jasmine-core": "~5.4.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "8.16.0"
+  }
+}

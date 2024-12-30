@@ -1,0 +1,10 @@
+@import '../styles/custom-variables';
+
+$table-bg-scale: 0% !default; // Fix for deprecation: https://sass-lang.com/d/function-units
+$alert-bg-scale: 0% !default; // Fix for deprecation: https://sass-lang.com/d/function-units
+
+@import 'bootswatch/dist/minty/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootswatch_fix/minty'; // import from 'bootswatch/dist/minty/bootswatch' when font import issue is fixed
+
+@import 'app-theme';

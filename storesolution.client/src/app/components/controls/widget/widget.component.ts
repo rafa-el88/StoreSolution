@@ -3,7 +3,6 @@ import { fadeInOut } from "../../../services/animations";
 import { Widget } from "../../../models/dashboard";
 import { TranslateModule } from "@ngx-translate/core";
 import { NgxDatatableModule } from "@siemens/ngx-datatable";
-import { SearchBoxComponent } from "../search-box/search-box.component";
 
 @Component({
   selector: 'app-widget',
@@ -11,7 +10,7 @@ import { SearchBoxComponent } from "../search-box/search-box.component";
   styleUrl: './widget.component.scss',
   standalone: true,
   animations: [fadeInOut],
-  imports: [SearchBoxComponent, TranslateModule, NgxDatatableModule]
+  imports: [TranslateModule, NgxDatatableModule]
 })
 
 export class WidgetComponent {

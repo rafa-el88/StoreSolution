@@ -352,10 +352,10 @@
     "management": {
       "Search": "Procurar filme...",
       "NewMovie": "Novo filme",
-      "Title": "Titulo",
+      "Title": "Filme",
       "Description": "Descrição",
       "Sinopse": "Sinopse",
-      "PricePerDay": "Preço por dia",
+      "PricePerDay": "Preço/dia",
       "UnitsInStock": "Qtd. em estoque",
       "QuantityCopies": "Qtd. cópias"
     }

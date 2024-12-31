@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DefaultUrlSerializer, UrlTree } from "@angular/router";
-import { Utilities } from "./utilities";
+import { Utilities } from "../helper/utilities";
 
 @Injectable()
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {

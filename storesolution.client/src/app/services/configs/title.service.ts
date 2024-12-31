@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { TitleStrategy, RouterStateSnapshot } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { Utilities } from './utilities';
+import { Utilities } from '../helper/utilities';
 
 @Injectable()
 export class AppTitleService extends TitleStrategy {

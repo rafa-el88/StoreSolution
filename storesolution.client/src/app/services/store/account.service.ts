@@ -2,12 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 
-import { AccountEndpoint } from './account-endpoint.service';
-import { AuthService } from './auth.service';
-import { User } from '../models/user.model';
-import { Role } from '../models/role.model';
-import { Permission, PermissionValues } from '../models/permission.model';
-import { UserEdit } from '../models/user-edit.model';
+import { AccountEndpoint } from '../endpoints/account-endpoint.service';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../../models/user/user.model';
+import { Role } from '../../models/configs/role.model';
+import { Permission, PermissionValues } from '../../models/configs/permission.model';
+import { UserEdit } from '../../models/user/user-edit.model';
 
 export type RolesChangedOperation = 'add' | 'delete' | 'modify';
 export interface RolesChangedEventArg { roles: Role[] | string[]; operation: RolesChangedOperation; }

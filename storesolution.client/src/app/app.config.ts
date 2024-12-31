@@ -8,9 +8,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { routes } from './app.routes';
 import { AppErrorHandler } from './app-error.handler';
-import { AppTitleService } from './services/app-title.service';
-import { LowerCaseUrlSerializer } from './services/lowercase-url-serializer.service';
-import { TranslateLanguageLoader } from './services/app-translation.service';
+import { AppTitleService } from './services/configs/title.service';
+import { LowerCaseUrlSerializer } from './services/configs/lowercase-url-serializer.service';
+import { TranslateLanguageLoader } from './services/configs/translation.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -5,13 +5,13 @@ import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { TableColumn, NgxDatatableModule } from '@siemens/ngx-datatable';
 
-import { AlertService, DialogType, MessageSeverity } from '../../../services/alert.service';
-import { AppTranslationService } from '../../../services/app-translation.service';
-import { NotificationService } from '../../../services/notification.service';
-import { AccountService } from '../../../services/account.service';
-import { Permissions } from '../../../models/permission.model';
-import { Utilities } from '../../../services/utilities';
-import { Notification } from '../../../models/notification.model';
+import { AlertService, DialogType, MessageSeverity } from '../../../services/configs/alert.service';
+import { AppTranslationService } from '../../../services/configs/translation.service';
+import { NotificationService } from '../../../services/configs/notification.service';
+import { AccountService } from '../../../services/store/account.service';
+import { Permissions } from '../../../models/configs/permission.model';
+import { Utilities } from '../../../services/helper/utilities';
+import { Notification } from '../../../models/configs/notification.model';
 
 @Component({
   selector: 'app-notifications-viewer',

@@ -1,4 +1,4 @@
-import { Utilities } from '../services/utilities';
+import { Utilities } from '../../services/helper/utilities';
 
 export class Notification {
   public id = 0;

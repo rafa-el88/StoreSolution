@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AppTheme } from '../models/app-theme.model';
+import { AppTheme } from '../../models/configs/theme.model';
 
 @Injectable({
   providedIn: 'root'

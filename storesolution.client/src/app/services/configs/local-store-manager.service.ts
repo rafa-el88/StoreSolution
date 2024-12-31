@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { Utilities } from './utilities';
+import { Utilities } from '../helper/utilities';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { AuthService } from './auth.service';
-import { CustomerEndpoint } from './customer-endpoint.service';
-import { Customer } from '../models/customer.model';
+import { AuthService } from '../auth/auth.service';
+import { CustomerEndpoint } from '../endpoints/customer-endpoint.service';
+import { Customer } from '../../models/store/customer.model';
 
 @Injectable({
   providedIn: 'root'

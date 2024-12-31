@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { EndpointBase } from './endpoint-base.service';
-import { ConfigurationService } from './configuration.service';
+import { EndpointBase } from './base-endpoint.service';
+import { ConfigurationService } from '../configs/configuration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class MovieEndpoint extends EndpointBase {
   private http = inject(HttpClient);
   private configurations = inject(ConfigurationService);
 
-  get moviesUrl() { return this.configurations.baseUrl + '/api/movie/movies'; }
+  get moviesUrl() { return this.configurations.baseUrl + '/api/movie'; }
 
   getMoviesEndpoint<T>(page?: number, pageSize?: number): Observable<T> {
     const endpointUrl = page && pageSize ? `${this.moviesUrl}/${page}/${pageSize}` : this.moviesUrl;

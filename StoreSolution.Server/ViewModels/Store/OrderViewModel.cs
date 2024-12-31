@@ -6,8 +6,5 @@ namespace StoreSolution.Server.ViewModels.Store
     {
         public int Id { get; set; }
 
-        public decimal Discount { get; set; }
-
-        public string? Comments { get; set; }
     }
 }

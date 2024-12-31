@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { fadeInOut } from '../../services/animations';
-import { Utilities } from '../../services/utilities';
+import { fadeInOut } from '../../services/configs/animations';
+import { Utilities } from '../../services/helper/utilities';
 import { SearchBoxComponent } from '../controls/search-box/search-box.component';
-import { Customer } from '../../models/customer.model';
-import { AppTranslationService } from '../../services/app-translation.service';
+import { Customer } from '../../models/store/customer.model';
+import { AppTranslationService } from '../../services/configs/translation.service';
 import { NgxDatatableModule, TableColumn } from '@siemens/ngx-datatable';
-import { AlertService, MessageSeverity } from '../../services/alert.service';
-import { CustomerService } from '../../services/customer.service';
+import { AlertService, MessageSeverity } from '../../services/configs/alert.service';
+import { CustomerService } from '../../services/store/customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

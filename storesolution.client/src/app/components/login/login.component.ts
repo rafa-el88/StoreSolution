@@ -3,11 +3,11 @@ import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { AlertService, MessageSeverity, DialogType } from '../../services/alert.service';
-import { AuthService } from '../../services/auth.service';
-import { ConfigurationService } from '../../services/configuration.service';
-import { Utilities } from '../../services/utilities';
-import { UserLogin } from '../../models/user-login.model';
+import { AlertService, MessageSeverity, DialogType } from '../../services/configs/alert.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { ConfigurationService } from '../../services/configs/configuration.service';
+import { Utilities } from '../../services/helper/utilities';
+import { UserLogin } from '../../models/user/user-login.model';
 
 @Component({
     selector: 'app-login',

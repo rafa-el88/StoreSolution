@@ -5,7 +5,7 @@ using StoreSolution.Core.Services.Store.Interfaces;
 using StoreSolution.Server.Autorization;
 using StoreSolution.Server.ViewModels.Store;
 
-namespace StoreSolution.Server.Controllers
+namespace StoreSolution.Server.Controllers.Store
 {
     [Route("api/customer")]
     [Authorize]

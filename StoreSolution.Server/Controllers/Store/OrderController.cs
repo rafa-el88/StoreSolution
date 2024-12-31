@@ -5,40 +5,40 @@ using StoreSolution.Core.Services.Store.Interfaces;
 using StoreSolution.Server.Autorization;
 using StoreSolution.Server.ViewModels.Store;
 
-namespace StoreSolution.Server.Controllers
+namespace StoreSolution.Server.Controllers.Store
 {
-    [Route("api/movie")]
+    [Route("api/order")]
     [Authorize]
-    public class MovieController : Controller
+    public class OrderController : Controller
     {
         protected readonly IMapper _mapper;
         protected readonly ILogger<BaseApiController> _logger;
-        protected readonly IMovieService _movieService;
+        protected readonly IOrdersService _orderService;
 
-        public MovieController(IMapper mapper, ILogger<BaseApiController> logger, IMovieService movieService)
+        public OrderController(IMapper mapper, ILogger<BaseApiController> logger, IOrdersService orderService)
         {
             _mapper = mapper;
             _logger = logger;
-            _movieService = movieService;
+            _orderService = orderService;
         }
 
-        [HttpGet("movies/{pageNumber}/{pageSize}")]
+        [HttpGet("{pageNumber}/{pageSize}")]
         [Authorize(AuthPolicies.ManageAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
-        public async Task<IActionResult> GetMovies(int pageNumber, int pageSize)
+        public async Task<IActionResult> GetAllOrders(int pageNumber, int pageSize)
         {
-            var result = await _movieService.GetAllMovies(pageNumber, pageSize);
+            var result = await _orderService.GetAllOrders(pageNumber, pageSize);
             var movieViewModel = _mapper.Map<List<MovieViewModel>>(result);
-            
+
             return Ok(movieViewModel);
         }
 
-        [HttpGet("movies")]
+        [HttpGet()]
         [Authorize(AuthPolicies.ManageAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
-        public async Task<IActionResult> GetMovies()
+        public async Task<IActionResult> GetAllOrders()
         {
-            return await GetMovies(-1, -1);
+            return await GetAllOrders(-1, -1);
         }
     }
 }

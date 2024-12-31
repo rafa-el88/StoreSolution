@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 import { NgxDatatableModule } from "@siemens/ngx-datatable";
-import { fadeInOut } from "../../../services/animations";
+import { fadeInOut } from "../../../services/configs/animations";
 
 @Component({
   selector: 'app-subscribers',

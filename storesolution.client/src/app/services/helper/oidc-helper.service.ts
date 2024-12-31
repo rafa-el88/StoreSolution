@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { LocalStoreManager } from './local-store-manager.service';
-import { ConfigurationService } from './configuration.service';
-import { DBkeys } from './db-keys';
-import { LoginResponse } from '../models/login-response.model';
+import { LocalStoreManager } from '../configs/local-store-manager.service';
+import { ConfigurationService } from '../configs/configuration.service';
+import { DBkeys } from '../configs/db-keys';
+import { LoginResponse } from '../../models/configs/login-response.model';
 
 @Injectable({
   providedIn: 'root'

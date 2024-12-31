@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { fadeInOut } from "../../services/animations";
+import { fadeInOut } from "../../services/configs/animations";
 import { WidgetComponent } from "../controls/widget/widget.component";
 import { SubscribersComponent } from "./widgets/subscribers.component";
-import { Widget } from "../../models/dashboard";
+import { Widget } from "../../models/store/dashboard.model";
 import { TranslateModule } from "@ngx-translate/core";
 import { NgxDatatableModule } from "@siemens/ngx-datatable";
 

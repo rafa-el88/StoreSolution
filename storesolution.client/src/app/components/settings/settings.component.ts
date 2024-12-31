@@ -4,9 +4,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
-import { fadeInOut } from '../../services/animations';
-import { AccountService } from '../../services/account.service';
-import { Permissions } from '../../models/permission.model';
+import { fadeInOut } from '../../services/configs/animations';
+import { AccountService } from '../../services/store/account.service';
+import { Permissions } from '../../models/configs/permission.model';
 import { UserInfoComponent } from '../controls/user-info/user-info.component';
 import { UserPreferencesComponent } from '../controls/user-preferences/user-preferences.component';
 import { UsersManagementComponent } from '../controls/users-management/users-management.component';

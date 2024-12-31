@@ -5,10 +5,10 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
-import { AlertService, MessageSeverity } from '../../../services/alert.service';
-import { AccountService } from '../../../services/account.service';
-import { Role } from '../../../models/role.model';
-import { Permission, Permissions } from '../../../models/permission.model';
+import { AlertService, MessageSeverity } from '../../../services/configs/alert.service';
+import { AccountService } from '../../../services/store/account.service';
+import { Role } from '../../../models/configs/role.model';
+import { Permission, Permissions } from '../../../models/configs/permission.model';
 import { GroupByPipe } from '../../../pipes/group-by.pipe';
 
 @Component({

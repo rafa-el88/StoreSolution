@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService, TranslateLoader } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import fallbackLangData from '../../../public/locale/en.json';
+import fallbackLangData from '../../../../public/locale/en.json';
 
 @Injectable({
   providedIn: 'root'

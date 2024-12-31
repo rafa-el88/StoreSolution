@@ -2,9 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, interval } from 'rxjs';
 import { map, mergeMap, startWith } from 'rxjs/operators';
 
-import { AuthService } from './auth.service';
-import { NotificationEndpoint } from './notification-endpoint.service';
-import { Notification } from '../models/notification.model';
+import { AuthService } from '../auth/auth.service';
+import { NotificationEndpoint } from '../endpoints/notification-endpoint.service';
+import { Notification } from '../../models/configs/notification.model';
 
 @Injectable({
   providedIn: 'root'

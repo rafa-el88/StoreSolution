@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../services/configs/animations';
 
 @Component({
     selector: 'app-not-found',

@@ -4,14 +4,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableColumn, NgxDatatableModule } from '@siemens/ngx-datatable';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AlertService, DialogType, MessageSeverity } from '../../../services/alert.service';
-import { AppTranslationService } from '../../../services/app-translation.service';
-import { AccountService } from '../../../services/account.service';
-import { Utilities } from '../../../services/utilities';
-import { User } from '../../../models/user.model';
-import { Role } from '../../../models/role.model';
-import { Permissions } from '../../../models/permission.model';
-import { UserEdit } from '../../../models/user-edit.model';
+import { AlertService, DialogType, MessageSeverity } from '../../../services/configs/alert.service';
+import { AppTranslationService } from '../../../services/configs/translation.service';
+import { AccountService } from '../../../services/store/account.service';
+import { Utilities } from '../../../services/helper/utilities';
+import { User } from '../../../models/user/user.model';
+import { Role } from '../../../models/configs/role.model';
+import { Permissions } from '../../../models/configs/permission.model';
+import { UserEdit } from '../../../models/user/user-edit.model';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { SearchBoxComponent } from '../search-box/search-box.component';
 

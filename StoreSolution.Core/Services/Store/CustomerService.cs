@@ -24,8 +24,7 @@ namespace StoreSolution.Core.Services.Store
             if (pageSize != -1)
                 query = query.Take(pageSize);
 
-            var customers = await query.ToListAsync();
-            return customers;
+            return await query.ToListAsync(); 
         }
 
         public IEnumerable<Customer> GetTopActiveCustomers(int count)

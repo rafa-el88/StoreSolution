@@ -24,8 +24,7 @@ namespace StoreSolution.Core.Services.Store
             if (pageSize != -1)
                 query = query.Take(pageSize);
 
-            var movies = await query.ToListAsync();
-            return movies;
+            return await query.ToListAsync();
         }
     }
 }

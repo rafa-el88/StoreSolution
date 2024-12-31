@@ -25,6 +25,7 @@ declare let alertify: Alertify;
     ToastaModule, RouterLink, RouterLinkActive, NgbCollapseModule, RouterOutlet, TranslateModule]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  
   private toastaService = inject(ToastaService);
   private toastaConfig = inject(ToastaConfig);
   private accountService = inject(AccountService);

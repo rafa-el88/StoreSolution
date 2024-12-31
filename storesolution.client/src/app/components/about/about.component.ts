@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { Component } from "@angular/core";
+import { TranslateModule } from "@ngx-translate/core";
+import { fadeInOut } from "../../services/configs/animations";
 
-import { fadeInOut } from '../../services/configs/animations';
 
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrl: './about.component.scss',
-    animations: [fadeInOut],
-    imports: [TranslateModule]
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrl: './about.component.scss',
+  animations: [fadeInOut],
+  imports: [TranslateModule]
 })
 export class AboutComponent {
 }

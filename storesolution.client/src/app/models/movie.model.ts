@@ -4,6 +4,7 @@ export class Movie {
     public description = '',
     public sinopse = '',
     public pricePerDay = '',
+    public quantityCopies = '',
     public unitsInStock = '',
     public isActive = ''
   ) { }

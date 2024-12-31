@@ -172,6 +172,7 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                     Description = "Classificação indicativa 10 Anos. Contém violência.",
                     Sinopse = "Dirigido por Christopher Nolan, é um épico filme científico de 2014 que explora as fronteiras do espaço-tempo. Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade.",
                     PricePerDay = 10,
+                    QuantityCopies = 12,
                     UnitsInStock = 12,
                     IsActive = true,
                     MovieCategory = category_4
@@ -183,6 +184,7 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                     Description = " Classificação indicativa 16 Anos. Contém drogas lícitas, violência extrema.",
                     Sinopse = "Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade. Classificação indicativa 10 Anos. Contém violência.",
                     PricePerDay = 11,
+                    QuantityCopies = 5,
                     UnitsInStock = 5,
                     IsActive = true,
                     MovieCategory = category_1
@@ -194,6 +196,7 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                     Description = "Classificação indicativa 12 Anos. Contém violência.",
                     Sinopse = "Sonic, Knuckles e Tails se reúnem contra um novo e poderoso adversário, Shadow, um vilão misterioso com poderes diferentes de tudo o que já enfrentaram antes. Com suas habilidades excepcionais, a Equipe Sonic vai buscar uma aliança improvável na esperança de deter Shadow e proteger o planeta.",
                     PricePerDay = 6,
+                    QuantityCopies = 2,
                     UnitsInStock = 2,
                     IsActive = true,
                     MovieCategory = category_1
@@ -205,7 +208,8 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                     Description = "Classificação indicativa Livre. Contém violência.",
                     Sinopse = "Em Moana 2, Moana e Maui se reencontram após três anos para uma nova e incrível jornada com um grupo improvável de marujos. Após receber um chamado de seus ancestrais, Moana parte em uma jornada nos mares distantes da Oceania, desbravando águas perigosas, rumo a uma aventura diferente de todas as que já viveu.",
                     PricePerDay = 6,
-                    UnitsInStock = 2,
+                    QuantityCopies = 3,
+                    UnitsInStock = 3,
                     IsActive = true,
                     MovieCategory = category_1
                 };

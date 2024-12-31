@@ -57,5 +57,11 @@ export const routes: Routes = [
     path: '**',
     loadComponent: () => import('./components/not-found/not-found.component').then(m => m.NotFoundComponent),
     title: 'Page Not Found'
-  }
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.default),
+    canActivate: [AuthGuard],
+    title: 'DashBoards'
+  },
 ];

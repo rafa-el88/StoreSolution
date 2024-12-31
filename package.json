@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ctrl/ngx-csv": "^6.0.0",
+    "ngx-papaparse": "^8.0.0"
+  }
+}

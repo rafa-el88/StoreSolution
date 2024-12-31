@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly usersTab = 'users';
   readonly rolesTab = 'roles';
   activeTab = '';
-  showDatatable = false; // Delays showing the table until tab is shown so column widths are calculated correctly
+  showDatatable = false; 
   fragmentSubscription: Subscription | undefined;
 
   ngOnInit() {

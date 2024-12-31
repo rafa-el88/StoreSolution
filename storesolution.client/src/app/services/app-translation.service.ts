@@ -14,8 +14,8 @@ export class AppTranslationService {
   languageChanged$ = this.translate.onLangChange.asObservable();
 
   constructor() {
-    this.addLanguages(['en', 'fr', 'de', 'es', 'pt', 'zh', 'ko', 'ar']);
-    this.setDefaultLanguage('en');
+    this.addLanguages(['en', 'pt']);
+    this.setDefaultLanguage('pt');
   }
 
   addLanguages(lang: string[]) {
@@ -45,7 +45,7 @@ export class AppTranslationService {
   useBrowserLanguage(): string | void {
     const browserLang = this.getBrowserLanguage();
 
-    if (browserLang?.match(/en|fr|de|es|pt|zh|ko|ar/)) {
+    if (browserLang?.match(/pt|en/)) {
       this.changeLanguage(browserLang);
       return browserLang;
     }

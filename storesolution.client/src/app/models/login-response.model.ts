@@ -1,6 +1,4 @@
 import { PermissionValues } from './permission.model';
-
-
 export interface LoginResponse {
   id_token: string;
   access_token: string;
@@ -9,8 +7,6 @@ export interface LoginResponse {
   token_type: string;
   scope: string;
 }
-
-
 export interface IdToken {
   iat: number;
   exp: number;

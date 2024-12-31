@@ -9,7 +9,17 @@
                 <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'movies.management.Search' | translate}}" />
             </div>
         </div>
+        <div class="col-lg-4">
+            @if (showDatatable){
+            <button type="button" (click)="onClickExportCsv()" class="btn btn-primary btn-xs">
+                <i class='fa-xs fa fa-download'></i>
+            </button>
+            }
+        </div>
     </div>
+</div>
+<div>
+    <br />
 </div>
 @if (showDatatable){
 <ngx-datatable class="material colored-header sm table-x table-striped table-hover"
@@ -21,9 +31,10 @@
                [columns]="columns"
                [scrollbarV]="true"
                [columnMode]="'force'">
-</ngx-datatable>
 
+</ngx-datatable>
+}
 <ng-template #indexTemplate let-value="value">
     <strong title="{{value}}">{{value}}</strong>
 </ng-template>
-}
+

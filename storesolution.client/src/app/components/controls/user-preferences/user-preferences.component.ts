@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgSelectComponent, NgOptionComponent } from '@ng-select/ng-select';
-
 import { AlertService, DialogType, MessageSeverity } from '../../../services/alert.service';
 import { ConfigurationService } from '../../../services/configuration.service';
 import { AccountService } from '../../../services/account.service';

@@ -357,7 +357,8 @@
       "Title": "Titulo",
       "Sinopse": "Sinopse",
       "PricePerDay": "Preço por dia",
-      "UnitsInStock": "Qtd. em estoque"
+      "UnitsInStock": "Qtd. em estoque",
+      "QuantityCopies": "Qtd. de cópias"
     }
   },
   "customers": {

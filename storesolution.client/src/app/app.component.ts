@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData, ToastaModule } from 'ngx-toasta';
 import { NgbCollapseModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { AlertService, AlertDialog, DialogType, AlertCommand, MessageSeverity } from './services/alert.service';
 import { AppTranslationService } from './services/app-translation.service';
 import { AccountService } from './services/account.service';
@@ -23,8 +22,7 @@ declare let alertify: Alertify;
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [
-    ToastaModule, RouterLink, RouterLinkActive, NgbCollapseModule, RouterOutlet, TranslateModule
-  ]
+    ToastaModule, RouterLink, RouterLinkActive, NgbCollapseModule, RouterOutlet, TranslateModule]
 })
 export class AppComponent implements OnInit, OnDestroy {
   private toastaService = inject(ToastaService);

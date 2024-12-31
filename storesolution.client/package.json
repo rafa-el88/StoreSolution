@@ -42,6 +42,7 @@
     "jest-editor-support": "*",
     "ng2-charts": "^7.0.0",
     "ngx-toasta": "^4.0.0",
+    "papaparse": "^5.4.1",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

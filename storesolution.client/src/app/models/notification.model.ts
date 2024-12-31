@@ -1,6 +1,5 @@
 import { Utilities } from '../services/utilities';
 
-
 export class Notification {
   public id = 0;
   public header = '';

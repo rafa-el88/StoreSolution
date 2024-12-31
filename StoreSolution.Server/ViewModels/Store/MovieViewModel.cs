@@ -12,6 +12,8 @@
 
         public decimal PricePerDay { get; set; }
 
+        public int QuantityCopies { get; set; }
+
         public int UnitsInStock { get; set; }
     }
 }

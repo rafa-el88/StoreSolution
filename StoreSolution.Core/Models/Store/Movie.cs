@@ -12,6 +12,8 @@ namespace StoreSolution.Core.Models.Store
 
         public decimal PricePerDay { get; set; }
 
+        public int QuantityCopies { get; set; }
+
         public int UnitsInStock { get; set; }
 
         public bool IsActive { get; set; }
@@ -21,6 +23,7 @@ namespace StoreSolution.Core.Models.Store
         public string? UrlHandle { get; set; }
 
         public int? ParentId { get; set; }
+
         public Movie? Parent { get; set; }
 
         public int MovieCategoryId { get; set; }

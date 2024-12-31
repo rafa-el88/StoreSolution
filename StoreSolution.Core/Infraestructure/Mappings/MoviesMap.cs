@@ -15,6 +15,7 @@ namespace StoreSolution.Core.Infraestructure.Mappings
             builder.Property(p => p.Description).HasMaxLength(100);
             builder.Property(p => p.Sinopse).HasMaxLength(1000);
             builder.Property(p => p.PricePerDay).HasColumnType("numeric(10, 2)");
+            builder.Property(p => p.QuantityCopies);
             builder.Property(p => p.UnitsInStock);
             builder.Property(p => p.IsActive).HasDefaultValue(true);
             builder.Property(p => p.FeaturedImageUrl).HasMaxLength(255);

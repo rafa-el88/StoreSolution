@@ -170,8 +170,6 @@ export class AlertService {
   }
 }
 
-
-// ******************** Dialog ********************//
 export class AlertDialog {
   constructor(
     public message: string,
@@ -190,10 +188,6 @@ export enum DialogType {
   confirm,
   prompt
 }
-// ******************** End ********************//
-
-
-// ******************** Growls ********************//
 export class AlertCommand {
   constructor(
     public operation: 'clear' | 'add' | 'add_sticky',
@@ -216,4 +210,3 @@ export enum MessageSeverity {
   warn,
   wait
 }
-// ******************** End ********************//

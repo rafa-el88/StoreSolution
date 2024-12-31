@@ -103,6 +103,10 @@ export class ConfigurationService {
     if (this.localStorage.exists(DBkeys.SHOW_DASHBOARD_NOTIFICATIONS)) {
       this._showDashboardNotifications = this.localStorage.getDataObject<boolean>(DBkeys.SHOW_DASHBOARD_NOTIFICATIONS);
     }
+
+    if (this.localStorage.exists(DBkeys.SHOW_DASHBOARD_WIDGET)) {
+      this._showDashboardNotifications = this.localStorage.getDataObject<boolean>(DBkeys.SHOW_DASHBOARD_WIDGET);
+    }
   }
 
   private saveToLocalStore(data: unknown, key: string) {
@@ -156,6 +160,10 @@ export class ConfigurationService {
     this.localStorage.deleteData(DBkeys.THEME_ID);
     this.localStorage.deleteData(DBkeys.HOME_URL);
     this.localStorage.deleteData(DBkeys.SHOW_DASHBOARD_NOTIFICATIONS);
+    this.localStorage.deleteData(DBkeys.SHOW_DASHBOARD_BANNER);
+    this.localStorage.deleteData(DBkeys.SHOW_DASHBOARD_STATISTICS);
+    this.localStorage.deleteData(DBkeys.SHOW_DASHBOARD_TODO);
+    this.localStorage.deleteData(DBkeys.SHOW_DASHBOARD_WIDGET);
 
     this.resetLanguage();
     this.resetTheme();

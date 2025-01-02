@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInOut } from '../../services/configs/animations';
 import { Utilities } from '../../services/helper/utilities';
-import { SearchBoxComponent } from '../controls/search-box/search-box.component';
 import { AppTranslationService } from '../../services/configs/translation.service';
 import { NgxDatatableModule, TableColumn } from '@siemens/ngx-datatable';
 import { AlertService, MessageSeverity } from '../../services/configs/alert.service';
@@ -16,7 +15,7 @@ import { Order } from '../../models/store/order.model';
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
   animations: [fadeInOut],
-  imports: [SearchBoxComponent, TranslateModule, NgxDatatableModule]
+  imports: [TranslateModule, NgxDatatableModule]
 })
 export class OrdersComponent implements OnInit {
 
@@ -86,11 +85,6 @@ export class OrdersComponent implements OnInit {
 
   ngAfterViewInit() {
     setTimeout(() => this.showDatatable = true);
-  }
-
-  onSearchChanged(value: string) {
-    this.rows = this.rowsCache.filter(r =>
-      Utilities.searchArray(value, false, r.id));
   }
 
   onClickExportCsv() {

@@ -63,7 +63,7 @@
     "@angular/localize": "^19.1.0-next.4",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^22.10.1",
-    "angular-eslint": "19.0.0",
+    "angular-eslint": "19.0.2",
     "eslint": "^9.15.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",

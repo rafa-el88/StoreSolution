@@ -29,7 +29,7 @@ namespace StoreSolution.Server.Controllers
         {
             var result = await _movieService.GetAllMovies(pageNumber, pageSize);
             var movieViewModel = _mapper.Map<List<MovieViewModel>>(result);
-            
+
             return Ok(movieViewModel);
         }
 
@@ -39,6 +39,26 @@ namespace StoreSolution.Server.Controllers
         public async Task<IActionResult> GetMovies()
         {
             return await GetMovies(-1, -1);
+        }
+
+        [HttpGet("eventId/{eventId}/{pageNumber}/{pageSize}")]
+        [Authorize(AuthPolicies.ManageAllUsersPolicy)]
+        [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
+        public async Task<IActionResult> GetMoviesByEvent(int eventId, int pageNumber, int pageSize)
+        {
+            var result = await _movieService.GetMoviesByEvent(eventId, pageNumber, pageSize);
+            var movieViewModel = _mapper.Map<List<MovieViewModel>>(result);
+
+            return Ok(movieViewModel);
+        }
+
+
+        [HttpGet("eventId/{eventId}")]
+        [Authorize(AuthPolicies.ManageAllUsersPolicy)]
+        [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
+        public async Task<IActionResult> GetMoviesByEvent(int eventId)
+        {
+            return await GetMoviesByEvent(eventId, -1, -1);
         }
     }
 }

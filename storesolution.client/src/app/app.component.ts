@@ -14,6 +14,7 @@ import { ConfigurationService } from './services/configs/configuration.service';
 import { Alertify } from './models/configs/Alertify';
 import { Permissions } from './models/configs/permission.model';
 import { LoginComponent } from './components/login/login.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 declare let alertify: Alertify;
 
@@ -22,7 +23,7 @@ declare let alertify: Alertify;
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [
-    ToastaModule, RouterLink, RouterLinkActive, NgbCollapseModule, RouterOutlet, TranslateModule]
+    ToastaModule, RouterLink, RouterLinkActive, NgbCollapseModule, RouterOutlet, TranslateModule, NgSelectModule]
 })
 export class AppComponent implements OnInit, OnDestroy {
   

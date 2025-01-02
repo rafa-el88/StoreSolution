@@ -12,8 +12,8 @@ using StoreSolution.Core.Infraestructure.Context;
 namespace StoreSolution.Server.Migrations
 {
     [DbContext(typeof(StoreSolutionDbContext))]
-    [Migration("20250102092104_CreateDataBase_Initial")]
-    partial class CreateDataBase_Initial
+    [Migration("20250102191038_MigrationInitial_StoreSolution")]
+    partial class MigrationInitial_StoreSolution
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

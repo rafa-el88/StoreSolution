@@ -13,4 +13,8 @@ export class MovieService {
   getMovies(page?: number, pageSize?: number) {
     return this.movieEndpoint.getMoviesEndpoint<Movie[]>(page, pageSize);
   }
+
+  getMoviesByEvent(eventId: number, page?: number, pageSize?: number) {
+    return this.movieEndpoint.getMoviesByEventIdEndpoint<Movie[]>(eventId, page, pageSize);
+  }
 }

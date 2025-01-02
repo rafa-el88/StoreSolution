@@ -10,13 +10,15 @@ import { AlertService, MessageSeverity } from '../../services/configs/alert.serv
 import { MovieService } from '../../services/store/movie.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ExportCsvService } from '../../services/helper/export-csv.service';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
   animations: [fadeInOut],
-  imports: [SearchBoxComponent, TranslateModule, NgxDatatableModule]
+  imports: [SearchBoxComponent, TranslateModule, NgxDatatableModule, NgSelectModule, FormsModule]
 })
 export class MoviesComponent implements OnInit {
 
@@ -30,6 +32,9 @@ export class MoviesComponent implements OnInit {
   showDatatable = false;
   columns: TableColumn[] = [];
   loadingIndicator = false;
+  selectedValue: number = 0;
+
+
   constructor() { }
 
   ngOnInit() {
@@ -38,12 +43,9 @@ export class MoviesComponent implements OnInit {
     this.columns = [
       { prop: 'id', name: '#', width: 5 },
       { prop: 'title', name: gT('movies.management.Title'), width: 100 },
-      //{ prop: 'sinopse', name: gT('movies.management.Sinopse'), width: 90 },
-      //{ prop: 'description', name: gT('movies.management.Description'), width: 90 },
       { prop: 'pricePerDay', name: gT('movies.management.PricePerDay'), width: 25 },
       { prop: 'quantityCopies', name: gT('movies.management.QuantityCopies'), width: 25 },
       { prop: 'unitsInStock', name: gT('movies.management.UnitsInStock'), width: 25 }
-      //{ prop: 'isActive', name: gT('movies.management.IsActive'), width: 20 }
     ];
     if (this.canManageMovies) {
       this.columns.push({
@@ -60,9 +62,20 @@ export class MoviesComponent implements OnInit {
   }
 
   loadData() {
-    this.alertService.startLoadingMessage();
+    /*this.alertService.startLoadingMessage();
     this.loadingIndicator = true;
     this.movieService.getMovies()
+      .subscribe({
+        next: results => this.onDataLoadSuccessful(results),
+        error: error => this.onDataLoadFailed(error)
+      });*/
+  }
+
+  onSelectChange(event: any) {
+
+    console.log(event);
+
+    this.movieService.getMoviesByEvent(event)
       .subscribe({
         next: results => this.onDataLoadSuccessful(results),
         error: error => this.onDataLoadFailed(error)
@@ -75,6 +88,7 @@ export class MoviesComponent implements OnInit {
 
     this.rowsCache = [...movie];
     this.rows = movie;
+    setTimeout(() => this.showDatatable = true);
   }
 
   onDataLoadFailed(error: HttpErrorResponse) {
@@ -87,7 +101,7 @@ export class MoviesComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => this.showDatatable = true);
+    
   }
 
   onSearchChanged(value: string) {
@@ -102,7 +116,6 @@ export class MoviesComponent implements OnInit {
     var headerCustom = ['ID', 'Titulo', 'Preço/dia', 'Qtd. Cópias', 'Qtd. Estoque'];
     this.exportCsv.exportToCsv(this.rows, headerCustom, nameCsv);
   }
-
   get canManageMovies() {
     return !!true;
   }

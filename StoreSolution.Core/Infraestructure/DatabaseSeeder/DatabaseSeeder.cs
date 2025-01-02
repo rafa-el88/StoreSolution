@@ -243,7 +243,7 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                 Sinopse = sinopse,
                 PricePerDay = pricePerDay,
                 QuantityCopies = quantityCopies,
-                UnitsInStock = 12,
+                UnitsInStock = unitsInStock,
                 IsActive = true,
                 CategoryId = categoryId,
                 CreatedBy = userId,

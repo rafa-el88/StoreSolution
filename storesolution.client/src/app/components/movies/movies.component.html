@@ -1,15 +1,17 @@
 <header class="pageHeader">
     <h3><i class="fa fa-film fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Movies' | translate}}</h3>
 </header>
-
 <div>
     <div class="row control-box">
         <div class="col-lg-8">
-            <div class="search-box">
-                <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'movies.management.Search' | translate}}" />
-            </div>
+            <ng-select [(ngModel)]="selectedValue" (change)="onSelectChange($event)">
+                <ng-option [value]="0">Selecione à Disponibilidade</ng-option>
+                <ng-option [value]="1">Todos Filmes</ng-option>
+                <ng-option [value]="2">Disponiveis</ng-option>
+                <ng-option [value]="3">Indisponiveis</ng-option>
+            </ng-select>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-1">
             @if (showDatatable){
             <button type="button" (click)="onClickExportCsv()" class="btn btn-primary btn-xs">
                 <i class='fa-xs fa fa-download'></i>
@@ -33,8 +35,7 @@
                [columnMode]="'force'">
 
 </ngx-datatable>
-}
 <ng-template #indexTemplate let-value="value">
     <strong title="{{value}}">{{value}}</strong>
 </ng-template>
-
+}

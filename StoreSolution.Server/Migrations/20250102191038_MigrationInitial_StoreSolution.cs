@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StoreSolution.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDataBase_Initial : Migration
+    public partial class MigrationInitial_StoreSolution : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -14,6 +14,7 @@ export class MovieEndpoint extends EndpointBase {
   private configurations = inject(ConfigurationService);
 
   get moviesUrl() { return this.configurations.baseUrl + '/api/movie'; }
+  get moviesByEventUrl() { return this.configurations.baseUrl + '/api/movie/eventId'; }
 
   getMoviesEndpoint<T>(page?: number, pageSize?: number): Observable<T> {
     const endpointUrl = page && pageSize ? `${this.moviesUrl}/${page}/${pageSize}` : this.moviesUrl;
@@ -21,6 +22,16 @@ export class MovieEndpoint extends EndpointBase {
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getMoviesEndpoint<T>(page, pageSize));
+      }));
+  }
+
+  getMoviesByEventIdEndpoint<T>(eventId: number, page?: number, pageSize?: number): Observable<T> {
+    //const endpointUrl = eventId ? `${this.moviesByEventUrl}/${eventId}` : this.moviesByEventUrl;
+    const endpointUrl = page && pageSize ? `${this.moviesByEventUrl}/${eventId}/${page}/${pageSize}` : `${this.moviesByEventUrl}/${eventId}`;
+    console.log(endpointUrl);
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getMoviesByEventIdEndpoint<T>(eventId, page, pageSize));
       }));
   }
 }

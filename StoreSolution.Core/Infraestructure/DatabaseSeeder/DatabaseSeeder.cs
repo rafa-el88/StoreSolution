@@ -17,64 +17,39 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
         public async Task SeedAsync()
         {
             await dbContext.Database.MigrateAsync();
-            await SeedDefaultUsersAsync();
-            await SeedDemoDataAsync();
+            string idGuidUser = await SeedDefaultUsersAsync();
+            await SeedDataStoreSolutionAsync(idGuidUser);
         }
 
-        private async Task SeedDefaultUsersAsync()
+        //DATA USERS INITIAL CREATE
+        private async Task<string> SeedDefaultUsersAsync()
         {
             if (!await dbContext.Users.AnyAsync())
             {
-                logger.LogInformation("INICIO - Geração de contas");
+                logger.LogInformation("START - Generating inbuilt accounts");
 
                 const string adminRoleName = "administrator";
                 const string userRoleName = "user";
 
-                await EnsureRoleAsync(adminRoleName, "Default administrator",
-                    ApplicationPermissions.GetAllPermissionValues());
-
+                await EnsureRoleAsync(adminRoleName, "Default administrator", ApplicationPermissions.GetAllPermissionValues());
                 await EnsureRoleAsync(userRoleName, "Default user", []);
+                await CreateUserAsync("admin", "RafaelADM2@25", "Admin Rafael", "rafaa.cfc@gmail.com", "+55 (41) 99992-8000", [adminRoleName]);
 
-                await CreateUserAsync("admin",
-                                      "RafaelADM2@25",
-                                      "Admin Rafael",
-                                      "rafaa.cfc@gmail.com",
-                                      "+55 (41) 99992-8000",
-                                      [adminRoleName]);
+                var user = await CreateUserAsync("user", "RafaelUSER2@25", "User Rafael", "rafaa.cfc1@gmail.com", "+55 (41) 99992-8001", [userRoleName]);
 
-                await CreateUserAsync("user",
-                                      "RafaelUSER2@25",
-                                      "User Rafael",
-                                      "rafaa.cfc1@gmail.com",
-                                      "+55 (41) 99992-8001",
-                                      [userRoleName]);
+                logger.LogInformation("END - Generating inbuilt accounts");
 
-                logger.LogInformation("FIM - Geração de contas");
+                if (user != null)
+                    return user.Id;
+
+                return "error";
             }
+            return "error";
         }
 
-        private async Task EnsureRoleAsync(string roleName, string description, string[] claims)
+        private async Task<ApplicationUser> CreateUserAsync(string userName, string password, string fullName, string email, string phoneNumber, string[] roles)
         {
-            if (await userRoleService.GetRoleByNameAsync(roleName) == null)
-            {
-                logger.LogInformation("Generating default role: {roleName}", roleName);
-
-                var applicationRole = new ApplicationRole(roleName, description);
-
-                var result = await userRoleService.CreateRoleAsync(applicationRole, claims);
-
-                if (!result.Succeeded)
-                {
-                    throw new UserRoleException($"Seeding \"{description}\" role failed. Errors: " +
-                        $"{string.Join(Environment.NewLine, result.Errors)}");
-                }
-            }
-        }
-
-        private async Task<ApplicationUser> CreateUserAsync(
-            string userName, string password, string fullName, string email, string phoneNumber, string[] roles)
-        {
-            logger.LogInformation("Generating default user: {userName}", userName);
+            logger.LogInformation("START - Generating default user: {userName}", userName);
 
             var applicationUser = new ApplicationUser
             {
@@ -89,157 +64,196 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
             var result = await userAccountService.CreateUserAsync(applicationUser, roles, password);
 
             if (!result.Succeeded)
-            {
-                throw new UserAccountException($"Seeding \"{userName}\" user failed. Errors: " +
-                    $"{string.Join(Environment.NewLine, result.Errors)}");
-            }
+                throw new UserAccountException($"Seeding \"{userName}\" user failed. Errors: " + $"{string.Join(Environment.NewLine, result.Errors)}");
+
+            logger.LogInformation("END - Generating default user: {userName}", userName);
 
             return applicationUser;
         }
 
-        //DATA INITIAL CREATE
-        private async Task SeedDemoDataAsync()
+        //DATA ROLE INITIAL CREATE
+        private async Task EnsureRoleAsync(string roleName, string description, string[] claims)
+        {
+            if (await userRoleService.GetRoleByNameAsync(roleName) == null)
+            {
+                logger.LogInformation("START - Generating default role: {roleName}", roleName);
+
+                var applicationRole = new ApplicationRole(roleName, description);
+
+                var result = await userRoleService.CreateRoleAsync(applicationRole, claims);
+
+                if (!result.Succeeded)
+                    throw new UserRoleException($"Seeding \"{description}\" role failed. Errors: " + $"{string.Join(Environment.NewLine, result.Errors)}");
+
+                logger.LogInformation("END - Generating default role: {roleName}", roleName);
+            }
+        }
+
+        private async Task SeedDataStoreSolutionAsync(string userId)
         {
             if (!await dbContext.Customers.AnyAsync() && !await dbContext.Categories.AnyAsync())
             {
-                logger.LogInformation("Seeding data");
+                logger.LogInformation("START - Seeding initial customers");
+                await SeedDataCustomerAsync("Rafael Rodrigues da Silva", "rafael@teste.com", "+55 41 99992-8003", "Rua da Glória, 251, ap 607", "Curitiba", Gender.Male, userId);
+                await SeedDataCustomerAsync("Carolina Osieki", "carolina@teste.com", "+55 41 99992-8004", "Rua da Glória, 607, ap 251", "Curitiba", Gender.Female, userId);
+                await SeedDataCustomerAsync("Luciano", "luciano@teste.com", "+55 41 99248-8773", "Rua da Abc, 123", "Curitiba", Gender.Male, userId);
+                await SeedDataCustomerAsync("Fabio", "fabio@teste.com", "+55 11 91914-2930", "Av. Abcd Efgh, 2025", "São Paulo", Gender.Male, userId);
+                logger.LogInformation("END - Seeding initial customers");
 
-                var customer_1 = new Customer
-                {
-                    Name = "Rafael Rodrigues da Silva",
-                    Email = "rafael@teste.com",
-                    PhoneNumber = "+55 41 99992-8003",
-                    Address = "Rua da Glória, 251, ap 607",
-                    City = "Curitiba",
-                    Gender = Gender.Male
-                };
+                logger.LogInformation("START - Seeding initial categories");
+                await SeedDataCategoryAsync("Ação", userId);
+                await SeedDataCategoryAsync("Comédia", userId);
+                await SeedDataCategoryAsync("Drama", userId);
+                await SeedDataCategoryAsync("Ficção", userId);
+                await SeedDataCategoryAsync("Terror", userId);
+                await SeedDataCategoryAsync("Romance", userId);
+                await SeedDataCategoryAsync("Documentário", userId);
+                await SeedDataCategoryAsync("Suspense", userId);
+                await SeedDataCategoryAsync("Aventura", userId);
+                await SeedDataCategoryAsync("Fantasia", userId);
+                await SeedDataCategoryAsync("Animação", userId);
+                logger.LogInformation("END - Seeding initial categories");
 
-                var customer_2 = new Customer
-                {
-                    Name = "Carolina Osieki",
-                    Email = "carolina@teste.com",
-                    PhoneNumber = "+55 41 99992-8004",
-                    Address = "Rua da Glória, 607, ap 251",
-                    City = "Curitiba",
-                    Gender = Gender.Female
-                };
+                logger.LogInformation("START - Seeding initial movies");
+                await SeedDataMovieAsync("Interstelar", "Classificação indicativa 10 Anos. Contém violência.",
+                                         "Dirigido por Christopher Nolan, é um épico filme científico de 2014 que explora as fronteiras do espaço-tempo. Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade.",
+                                         10, 12, 12, 4, userId);
+                await SeedDataMovieAsync("Kraven", "Classificação indicativa 16 Anos. Contém drogas lícitas, violência extrema.",
+                                         "Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade. Classificação indicativa 10 Anos. Contém violência.",
+                                         11, 5, 5, 1, userId);
+                await SeedDataMovieAsync("Sonic", "Classificação indicativa 12 Anos. Contém violência.",
+                                         "Sonic, Knuckles e Tails se reúnem contra um novo e poderoso adversário, Shadow, um vilão misterioso com poderes diferentes de tudo o que já enfrentaram antes. Com suas habilidades excepcionais, a Equipe Sonic vai buscar uma aliança improvável na esperança de deter Shadow e proteger o planeta.",
+                                         6, 2, 2, 1, userId);
+                await SeedDataMovieAsync("Moana 2", "Classificação indicativa Livre. Contém violência.",
+                                         "Em Moana 2, Moana e Maui se reencontram após três anos para uma nova e incrível jornada com um grupo improvável de marujos. Após receber um chamado de seus ancestrais, Moana parte em uma jornada nos mares distantes da Oceania, desbravando águas perigosas, rumo a uma aventura diferente de todas as que já viveu.",
+                                         6, 3, 3, 11, userId);
+                logger.LogInformation("END - Seeding initial movies");
 
-                var customer_3 = new Customer
-                {
-                    Name = "Luciano",
-                    Email = "luciano@teste.com",
-                    PhoneNumber = "+55 41 99248-8773",
-                    Address = "Rua da Abc, 123",
-                    City = "Curitiba",
-                    Gender = Gender.Male
-                };
+                logger.LogInformation("START - Seeding initial orders");
+                var orderId_customer_2 = await SeedDataOrderAsync(2, 3, userId);
+                await SeedDataOrderDetailAsync(orderId_customer_2, 3, userId);
+                await SeedDataOrderDetailAsync(orderId_customer_2, 1, userId);
 
-                var customer_4 = new Customer
-                {
-                    Name = "Fabio",
-                    Email = "fabio@teste.com",
-                    PhoneNumber = "+55 11 91914-2930",
-                    Address = "Av. Abcd Efgh, 2025",
-                    City = "São Paulo",
-                    Gender = Gender.Male
-                };
+                var orderId_customer_3 = await SeedDataOrderAsync(3, 8, userId);
+                await SeedDataOrderDetailAsync(orderId_customer_3, 3, userId);
 
-                var category_1 = new Category { Name = "Ação" };
+                var orderId_customer_4 = await SeedDataOrderAsync(2, 5, userId);
+                await SeedDataOrderDetailAsync(orderId_customer_4, 1, userId);
+                await SeedDataOrderDetailAsync(orderId_customer_4, 2, userId);
+                logger.LogInformation("END - Seeding initial orders");
 
-                var category_2 = new Category { Name = "Comédia" };
-
-                var category_3 = new Category { Name = "Drama" };
-
-                var category_4 = new Category { Name = "Ficção" };
-
-                var category_5 = new Category { Name = "Terror" };
-
-                var category_6 = new Category { Name = "Romance" };
-
-                var category_7 = new Category { Name = "Documentário" };
-
-                var category_8 = new Category { Name = "Suspense" };
-
-                var category_9 = new Category { Name = "Aventura" };
-
-                var category_10 = new Category { Name = "Fantasia" };
-
-                var category_11 = new Category { Name = "Animação" };
-
-                var movie_1 = new Movie
-                {
-                    Title = "Interstelar",
-                    Description = "Classificação indicativa 10 Anos. Contém violência.",
-                    Sinopse = "Dirigido por Christopher Nolan, é um épico filme científico de 2014 que explora as fronteiras do espaço-tempo. Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade.",
-                    PricePerDay = 10,
-                    QuantityCopies = 12,
-                    UnitsInStock = 12,
-                    IsActive = true,
-                    MovieCategory = category_4
-                };
-
-                var movie_2 = new Movie
-                {
-                    Title = "Kraven",
-                    Description = " Classificação indicativa 16 Anos. Contém drogas lícitas, violência extrema.",
-                    Sinopse = "Em um futuro distópico, a Terra enfrenta uma crise ambiental e alimentar. Uma equipe de astronautas, liderada pelo comandante Cooper (Matthew McConaughey), é enviada em uma missão desesperada para encontrar um novo lar para a humanidade. Classificação indicativa 10 Anos. Contém violência.",
-                    PricePerDay = 11,
-                    QuantityCopies = 5,
-                    UnitsInStock = 5,
-                    IsActive = true,
-                    MovieCategory = category_1
-                };
-
-                var movie_3 = new Movie
-                {
-                    Title = "Sonic",
-                    Description = "Classificação indicativa 12 Anos. Contém violência.",
-                    Sinopse = "Sonic, Knuckles e Tails se reúnem contra um novo e poderoso adversário, Shadow, um vilão misterioso com poderes diferentes de tudo o que já enfrentaram antes. Com suas habilidades excepcionais, a Equipe Sonic vai buscar uma aliança improvável na esperança de deter Shadow e proteger o planeta.",
-                    PricePerDay = 6,
-                    QuantityCopies = 2,
-                    UnitsInStock = 2,
-                    IsActive = true,
-                    MovieCategory = category_1
-                };
-
-                var movie_4 = new Movie
-                {
-                    Title = "Moana 2",
-                    Description = "Classificação indicativa Livre. Contém violência.",
-                    Sinopse = "Em Moana 2, Moana e Maui se reencontram após três anos para uma nova e incrível jornada com um grupo improvável de marujos. Após receber um chamado de seus ancestrais, Moana parte em uma jornada nos mares distantes da Oceania, desbravando águas perigosas, rumo a uma aventura diferente de todas as que já viveu.",
-                    PricePerDay = 6,
-                    QuantityCopies = 3,
-                    UnitsInStock = 3,
-                    IsActive = true,
-                    MovieCategory = category_1
-                };
-
-                dbContext.Customers.Add(customer_1);
-                dbContext.Customers.Add(customer_2);
-                dbContext.Customers.Add(customer_3);
-                dbContext.Customers.Add(customer_4);
-
-                dbContext.Movies.Add(movie_1);
-                dbContext.Movies.Add(movie_2);
-                dbContext.Movies.Add(movie_3);
-                dbContext.Movies.Add(movie_4);
-
-                dbContext.Categories.Add(category_1);
-                dbContext.Categories.Add(category_2);
-                dbContext.Categories.Add(category_3);
-                dbContext.Categories.Add(category_4);
-                dbContext.Categories.Add(category_5);
-                dbContext.Categories.Add(category_6);
-                dbContext.Categories.Add(category_7);
-                dbContext.Categories.Add(category_8);
-                dbContext.Categories.Add(category_9);
-                dbContext.Categories.Add(category_10);
-                dbContext.Categories.Add(category_11);
-
-                await dbContext.SaveChangesAsync();
-
-                logger.LogInformation("Seeding initial create completed");
+                logger.LogInformation("END - Seeding intial data StoreSolution");
             }
+        }
+
+        private async Task<int> SeedDataOrderAsync(int customerId, int days, string useId)
+        {
+            logger.LogInformation("START - Generating default order to customerId: {customerId}", useId);
+
+            var order = new Order
+            {
+                DateStartRental = DateTime.Now,
+                DateEndRental = DateTime.Now.AddDays(days),
+                ReturnedMovie = false,
+                CashierId = useId,
+                CustomerId = customerId,
+                CreatedBy = useId,
+                UpdatedBy = useId,
+            };
+
+            dbContext.Orders.Add(order);
+
+            var orderIdReturn = await dbContext.SaveChangesAsync();
+
+            logger.LogInformation("END - Generating default order: {orderIdReturn}", orderIdReturn);
+
+            return orderIdReturn;
+        }
+
+        //DATA INITIAL CREATE ORDER DETAIL
+        private async Task SeedDataOrderDetailAsync(int orderId, int movieId, string useId)
+        {
+            logger.LogInformation("START - Generating default order detail for orderId: {orderId}.", orderId);
+
+            var orderDetail = new OrderDetail
+            {
+                MovieId = movieId,
+                OrderId = orderId,
+                CreatedBy = useId,
+                UpdatedBy = useId
+            };
+
+            dbContext.OrderDetails.Add(orderDetail);
+            var orderDetailId = await dbContext.SaveChangesAsync();
+
+            //Update movie stock
+            var movie = await dbContext.Movies.FindAsync(movieId);
+            if (movie != null)
+            {
+                movie.UnitsInStock -= 1;
+                dbContext.Movies.Update(movie);
+                dbContext.SaveChanges();
+            }
+
+            logger.LogInformation("END - Generating default order detail: {idOrderDetail},  for orderId: {orderId}.", orderDetailId, orderId);
+        }
+
+        //DATA INITIAL CREATE CUSTOMER
+        private async Task SeedDataCustomerAsync(string name, string email, string phoneNumber, string adress, string city, Gender gender, string userId)
+        {
+            logger.LogInformation("START - Generating default customer: {name}: ", name);
+
+            var customer = new Customer
+            {
+                Name = name,
+                Email = email,
+                PhoneNumber = phoneNumber,
+                Address = adress,
+                City = city,
+                Gender = gender,
+                CreatedBy = userId,
+                UpdatedBy = userId
+            };
+
+            dbContext.Customers.Add(customer);
+            await dbContext.SaveChangesAsync();
+            logger.LogInformation("END - Generating default customer: {name}: ", name);
+        }
+
+        //DATA INITIAL CREATE CATEGORY
+        private async Task SeedDataCategoryAsync(string name, string userId)
+        {
+            logger.LogInformation("START - Generating default category: {name}: ", name);
+
+            var category = new Category { Name = name, IsActive = true, CreatedBy = userId, UpdatedBy = userId };
+
+            dbContext.Categories.Add(category);
+            await dbContext.SaveChangesAsync();
+            logger.LogInformation("END - Generating default customer: {name}: ", name);
+        }
+
+        //DATA INITIAL CREATE Movie
+        private async Task SeedDataMovieAsync(string title, string description, string sinopse, decimal pricePerDay, int quantityCopies, int unitsInStock, int categoryId, string userId)
+        {
+            logger.LogInformation("START - Generating default movie: {title}: ", title);
+
+            var movie = new Movie
+            {
+                Title = title,
+                Description = description,
+                Sinopse = sinopse,
+                PricePerDay = pricePerDay,
+                QuantityCopies = quantityCopies,
+                UnitsInStock = 12,
+                IsActive = true,
+                CategoryId = categoryId,
+                CreatedBy = userId,
+                UpdatedBy = userId
+            };
+
+            dbContext.Movies.Add(movie);
+            await dbContext.SaveChangesAsync();
+            logger.LogInformation("END - Generating default  movie: {title}: ", title);
         }
     }
 }

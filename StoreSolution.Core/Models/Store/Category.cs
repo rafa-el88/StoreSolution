@@ -6,10 +6,8 @@ namespace StoreSolution.Core.Models.Store
     {
         public required string Name { get; set; }
 
-        public string? Description { get; set; }
-
         public bool IsActive { get; set; }
 
-        public ICollection<Movie> Movies { get; } = [];
+        public ICollection<Movie>? Movies { get; } = [];
     }
 }

@@ -13,14 +13,14 @@ namespace StoreSolution.Core.Models.Store
 
         public bool ReturnedMovie { get; set; }
 
-        public string? CashierId { get; set; }
+        public required string CashierId { get; set; }
+        
+        public int CustomerId { get; set; }
 
         public ApplicationUser? Cashier { get; set; }
 
-        public int CustomerId { get; set; }
+        public Customer? Customer { get; set; }
 
-        public required Customer Customer { get; set; }
-
-        public ICollection<OrderDetail> OrderDetails { get; } = [];
+        public virtual ICollection<OrderDetail>? OrderDetails { get; } = [];
     }
 }

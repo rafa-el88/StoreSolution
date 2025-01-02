@@ -11,7 +11,7 @@ namespace StoreSolution.Core.Infraestructure.Mappings
             builder.ToTable("AppOrderDetails");
 
             builder.Property(p => p.PricePerDay).HasColumnType("numeric(10, 2)");
-            builder.Property(p => p.Quantity);
+            //builder.Property(p => p.Quantity);
         }
     }
 }

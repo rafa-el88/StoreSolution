@@ -21,9 +21,9 @@ namespace StoreSolution.Core.Infraestructure.Mappings
             builder.Property(p => p.FeaturedImageUrl).HasMaxLength(255);
             builder.Property(p => p.UrlHandle).HasMaxLength(255);
 
-            builder.HasOne(p => p.Parent)
-                .WithMany(p => p.Children)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(p => p.Parent)
+            //    .WithMany(p => p.Children)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

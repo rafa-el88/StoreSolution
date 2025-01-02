@@ -22,16 +22,14 @@ namespace StoreSolution.Core.Models.Store
 
         public string? UrlHandle { get; set; }
 
-        public int? ParentId { get; set; }
+        public int CategoryId { get; set; }
 
-        public Movie? Parent { get; set; }
+        public virtual Category? Category { get; set; }
 
-        public int MovieCategoryId { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; } = [];
 
-        public required Category MovieCategory { get; set; }
-
-        public ICollection<Movie> Children { get; } = [];
-
-        public ICollection<OrderDetail> OrderDetails { get; } = [];
+        //public int? ParentId { get; set; 
+        //public virtual Movie? Parent { get; set; }
+        //public virtual ICollection<Movie> Children { get; } = [];
     }
 }

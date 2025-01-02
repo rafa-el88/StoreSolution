@@ -12,8 +12,8 @@ using StoreSolution.Core.Infraestructure.Context;
 namespace StoreSolution.Server.Migrations
 {
     [DbContext(typeof(StoreSolutionDbContext))]
-    [Migration("20241231132014_AlterTableMovies_addCollumn")]
-    partial class AlterTableMovies_addCollumn
+    [Migration("20250102075613_CreateDataBase_Initial")]
+    partial class CreateDataBase_Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -488,10 +488,6 @@ namespace StoreSolution.Server.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -577,6 +573,9 @@ namespace StoreSolution.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
@@ -596,12 +595,6 @@ namespace StoreSolution.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
-
-                    b.Property<int>("MovieCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("numeric(10, 2)");
@@ -634,9 +627,7 @@ namespace StoreSolution.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MovieCategoryId");
-
-                    b.HasIndex("ParentId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("Title");
 
@@ -652,6 +643,7 @@ namespace StoreSolution.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CashierId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedBy")
@@ -717,9 +709,6 @@ namespace StoreSolution.Server.Migrations
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("numeric(10, 2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(40)
@@ -814,27 +803,22 @@ namespace StoreSolution.Server.Migrations
 
             modelBuilder.Entity("StoreSolution.Core.Models.Store.Movie", b =>
                 {
-                    b.HasOne("StoreSolution.Core.Models.Store.Category", "MovieCategory")
+                    b.HasOne("StoreSolution.Core.Models.Store.Category", "Category")
                         .WithMany("Movies")
-                        .HasForeignKey("MovieCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreSolution.Core.Models.Store.Movie", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("MovieCategory");
-
-                    b.Navigation("Parent");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("StoreSolution.Core.Models.Store.Order", b =>
                 {
                     b.HasOne("StoreSolution.Core.Models.Account.ApplicationUser", "Cashier")
                         .WithMany("Orders")
-                        .HasForeignKey("CashierId");
+                        .HasForeignKey("CashierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StoreSolution.Core.Models.Store.Customer", "Customer")
                         .WithMany("Orders")
@@ -906,8 +890,6 @@ namespace StoreSolution.Server.Migrations
 
             modelBuilder.Entity("StoreSolution.Core.Models.Store.Movie", b =>
                 {
-                    b.Navigation("Children");
-
                     b.Navigation("OrderDetails");
                 });
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StoreSolution.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationInitial_StoreSolutionDb : Migration
+    public partial class CreateDataBase_Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,6 @@ namespace StoreSolution.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
@@ -159,12 +158,12 @@ namespace StoreSolution.Server.Migrations
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Sinopse = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     PricePerDay = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
+                    QuantityCopies = table.Column<int>(type: "int", nullable: false),
                     UnitsInStock = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     FeaturedImageUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     UrlHandle = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    ParentId = table.Column<int>(type: "int", nullable: true),
-                    MovieCategoryId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -174,17 +173,11 @@ namespace StoreSolution.Server.Migrations
                 {
                     table.PrimaryKey("PK_AppMovies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AppMovies_AppCategories_MovieCategoryId",
-                        column: x => x.MovieCategoryId,
+                        name: "FK_AppMovies_AppCategories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "AppCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AppMovies_AppMovies_ParentId",
-                        column: x => x.ParentId,
-                        principalTable: "AppMovies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,7 +211,7 @@ namespace StoreSolution.Server.Migrations
                     DateEndRental = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDevolution = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ReturnedMovie = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    CashierId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CashierId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
@@ -238,7 +231,8 @@ namespace StoreSolution.Server.Migrations
                         name: "FK_AppOrders_AspNetUsers_CashierId",
                         column: x => x.CashierId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -357,7 +351,6 @@ namespace StoreSolution.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PricePerDay = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
@@ -421,14 +414,9 @@ namespace StoreSolution.Server.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppMovies_MovieCategoryId",
+                name: "IX_AppMovies_CategoryId",
                 table: "AppMovies",
-                column: "MovieCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AppMovies_ParentId",
-                table: "AppMovies",
-                column: "ParentId");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppMovies_Title",

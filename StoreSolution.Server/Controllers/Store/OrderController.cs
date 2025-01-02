@@ -24,18 +24,18 @@ namespace StoreSolution.Server.Controllers.Store
 
         [HttpGet("{pageNumber}/{pageSize}")]
         [Authorize(AuthPolicies.ManageAllUsersPolicy)]
-        [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
+        [ProducesResponseType(200, Type = typeof(List<OrderViewModel>))]
         public async Task<IActionResult> GetAllOrders(int pageNumber, int pageSize)
         {
             var result = await _orderService.GetAllOrders(pageNumber, pageSize);
-            var movieViewModel = _mapper.Map<List<MovieViewModel>>(result);
+            var orderViewModel = _mapper.Map<List<OrderViewModel>>(result);
 
-            return Ok(movieViewModel);
+            return Ok(orderViewModel);
         }
 
         [HttpGet()]
         [Authorize(AuthPolicies.ManageAllUsersPolicy)]
-        [ProducesResponseType(200, Type = typeof(List<MovieViewModel>))]
+        [ProducesResponseType(200, Type = typeof(List<OrderViewModel>))]
         public async Task<IActionResult> GetAllOrders()
         {
             return await GetAllOrders(-1, -1);

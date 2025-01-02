@@ -33,10 +33,10 @@ export class CustomersComponent implements OnInit {
 
     const gT = (key: string) => this.translationService.getTranslation(key);
     this.columns = [
-      { prop: 'id', name: '#', width: 10 },
-      { prop: 'name', name: gT('customers.management.Name'), width: 50 },
-      { prop: 'email', name: gT('customers.management.Email'), width: 20 },
-      { prop: 'phoneNumber', name: gT('customers.management.PhoneNumber'), width: 20 }
+      { prop: 'id', name: '#', width: 5 },
+      { prop: 'name', name: gT('customers.management.Name'), width: 150 },
+      { prop: 'email', name: gT('customers.management.Email'), width: 75 },
+      { prop: 'phoneNumber', name: gT('customers.management.PhoneNumber'), width: 50 }
     ];
     if (this.canManageCustomers) {
       this.columns.push({

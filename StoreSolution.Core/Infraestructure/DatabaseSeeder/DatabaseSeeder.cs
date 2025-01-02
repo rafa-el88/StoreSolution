@@ -33,6 +33,7 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
 
                 await EnsureRoleAsync(adminRoleName, "Default administrator", ApplicationPermissions.GetAllPermissionValues());
                 await EnsureRoleAsync(userRoleName, "Default user", []);
+
                 await CreateUserAsync("admin", "RafaelADM2@25", "Admin Rafael", "rafaa.cfc@gmail.com", "+55 (41) 99992-8000", [adminRoleName]);
 
                 var user = await CreateUserAsync("user", "RafaelUSER2@25", "User Rafael", "rafaa.cfc1@gmail.com", "+55 (41) 99992-8001", [userRoleName]);
@@ -130,23 +131,23 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
                 logger.LogInformation("END - Seeding initial movies");
 
                 logger.LogInformation("START - Seeding initial orders");
-                var orderId_customer_2 = await SeedDataOrderAsync(2, 3, userId);
-                await SeedDataOrderDetailAsync(orderId_customer_2, 3, userId);
-                await SeedDataOrderDetailAsync(orderId_customer_2, 1, userId);
+                await SeedDataOrderAsync(2, 3, userId);
+                await SeedDataOrderAsync(3, 8, userId);
+                await SeedDataOrderAsync(2, 5, userId);
 
-                var orderId_customer_3 = await SeedDataOrderAsync(3, 8, userId);
-                await SeedDataOrderDetailAsync(orderId_customer_3, 3, userId);
 
-                var orderId_customer_4 = await SeedDataOrderAsync(2, 5, userId);
-                await SeedDataOrderDetailAsync(orderId_customer_4, 1, userId);
-                await SeedDataOrderDetailAsync(orderId_customer_4, 2, userId);
+                await SeedDataOrderDetailAsync(1, 3, userId);
+                await SeedDataOrderDetailAsync(1, 1, userId);
+                await SeedDataOrderDetailAsync(2, 3, userId);
+                await SeedDataOrderDetailAsync(3, 1, userId);
+                await SeedDataOrderDetailAsync(3, 2, userId);
                 logger.LogInformation("END - Seeding initial orders");
 
                 logger.LogInformation("END - Seeding intial data StoreSolution");
             }
         }
 
-        private async Task<int> SeedDataOrderAsync(int customerId, int days, string useId)
+        private async Task SeedDataOrderAsync(int customerId, int days, string useId)
         {
             logger.LogInformation("START - Generating default order to customerId: {customerId}", useId);
 
@@ -163,14 +164,12 @@ namespace StoreSolution.Core.Infraestructure.DatabaseSeeder
 
             dbContext.Orders.Add(order);
 
-            var orderIdReturn = await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
 
-            logger.LogInformation("END - Generating default order: {orderIdReturn}", orderIdReturn);
-
-            return orderIdReturn;
+            logger.LogInformation("END - Generating default order to customerId: {customerId}", useId);
         }
 
-        //DATA INITIAL CREATE ORDER DETAIL
+        //DATA INITIAL CREATE ORDER DETAIL DETAIL
         private async Task SeedDataOrderDetailAsync(int orderId, int movieId, string useId)
         {
             logger.LogInformation("START - Generating default order detail for orderId: {orderId}.", orderId);

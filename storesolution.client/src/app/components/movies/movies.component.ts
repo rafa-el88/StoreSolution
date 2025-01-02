@@ -36,13 +36,13 @@ export class MoviesComponent implements OnInit {
 
     const gT = (key: string) => this.translationService.getTranslation(key);
     this.columns = [
-      { prop: 'id', name: '#', width: 10 },
-      { prop: 'title', name: gT('movies.management.Title'), width: 50 },
+      { prop: 'id', name: '#', width: 5 },
+      { prop: 'title', name: gT('movies.management.Title'), width: 100 },
       //{ prop: 'sinopse', name: gT('movies.management.Sinopse'), width: 90 },
       //{ prop: 'description', name: gT('movies.management.Description'), width: 90 },
-      { prop: 'pricePerDay', name: gT('movies.management.PricePerDay'), width: 20 },
-      { prop: 'quantityCopies', name: gT('movies.management.QuantityCopies'), width: 20 },
-      { prop: 'unitsInStock', name: gT('movies.management.UnitsInStock'), width: 20 }
+      { prop: 'pricePerDay', name: gT('movies.management.PricePerDay'), width: 25 },
+      { prop: 'quantityCopies', name: gT('movies.management.QuantityCopies'), width: 25 },
+      { prop: 'unitsInStock', name: gT('movies.management.UnitsInStock'), width: 25 }
       //{ prop: 'isActive', name: gT('movies.management.IsActive'), width: 20 }
     ];
     if (this.canManageMovies) {

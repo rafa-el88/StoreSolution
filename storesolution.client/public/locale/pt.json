@@ -368,5 +368,15 @@
       "Email": "E-mail",
       "PhoneNumber": "Telefone"
     }
+  },
+  "orders": {
+    "management": {
+      "Search": "Digite o nº do pedido e pressione <TAB>...",
+      "NewCustomer": "Novo pedido",
+      "DateStartRental": "Inico locação",
+      "DateEndRental": "Entrega prevista",
+      "DateDevolution": "Data devolução",
+      "ReturnedMovie": "Retorno confirmado"
+    }
   }
 }

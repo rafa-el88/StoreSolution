@@ -1,7 +1,40 @@
 <header class="pageHeader">
-  <h3><i class="fa fa-shopping-cart fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Orders' | translate}}</h3>
+    <h3><i class="fa fa-list fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Orders' | translate}}</h3>
 </header>
 
-<div [@fadeInOut]>
-  <span class="text-muted">-- Sample Page --</span>
+<div>
+    <div class="row control-box">
+<!--         <div class="col-lg-6">
+            <div class="search-box">
+                <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'orders.management.Search' | translate}}" />
+            </div>
+        </div> -->
+        <div class="col-lg-4">
+            @if (showDatatable){
+            <button type="button" (click)="onClickExportCsv()" class="btn btn-primary btn-xs">
+                <i class='fa-xs fa fa-download'></i>
+            </button>
+            }
+        </div>
+    </div>
 </div>
+<div>
+    <br />
+</div>
+@if (showDatatable){
+<ngx-datatable class="material colored-header sm table-x table-striped table-hover"
+               [loadingIndicator]="loadingIndicator"
+               [rows]="rows"
+               [rowHeight]="35"
+               [headerHeight]="37"
+               [footerHeight]="35"
+               [columns]="columns"
+               [scrollbarV]="true"
+               [columnMode]="'force'">
+
+</ngx-datatable>
+}
+<ng-template #indexTemplate let-value="value">
+    <strong title="{{value}}">{{value}}</strong>
+</ng-template>
+

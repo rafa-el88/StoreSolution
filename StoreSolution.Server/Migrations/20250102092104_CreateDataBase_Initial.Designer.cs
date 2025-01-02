@@ -12,7 +12,7 @@ using StoreSolution.Core.Infraestructure.Context;
 namespace StoreSolution.Server.Migrations
 {
     [DbContext(typeof(StoreSolutionDbContext))]
-    [Migration("20250102075613_CreateDataBase_Initial")]
+    [Migration("20250102092104_CreateDataBase_Initial")]
     partial class CreateDataBase_Initial
     {
         /// <inheritdoc />

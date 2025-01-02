@@ -369,5 +369,15 @@
       "Email": "E-mail",
       "PhoneNumber": "Phone"
     }
+  },
+  "orders": {
+    "management": {
+      "Search": "Search for order...",
+      "NewCustomer": "New order",
+      "dateStartRental": "Start date",
+      "DateEndRental": "Delivery date",
+      "DateDevolution": "Return date",
+      "ReturnedMovie": "Return confirmed"
+    }
   }
 }

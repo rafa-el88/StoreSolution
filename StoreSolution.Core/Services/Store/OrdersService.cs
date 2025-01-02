@@ -18,8 +18,8 @@ namespace StoreSolution.Core.Services.Store
         {
             IQueryable<Order> query = _context.Orders
                 .Include(o => o.OrderDetails)
-                .Include(o => o.Customer)
-                .Include(o => o.Cashier)
+                //.Include(o => o.Customer)
+                //.Include(o => o.Cashier)
                 .OrderBy(u => u.CreatedDate);
 
             if (pageNumber != -1)

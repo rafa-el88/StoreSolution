@@ -24,7 +24,6 @@ export class AccountEndpoint extends EndpointBase {
 
   getUserEndpoint<T>(userId?: string): Observable<T> {
     const endpointUrl = userId ? `${this.usersUrl}/${userId}` : this.currentUserUrl;
-    console.log(endpointUrl);
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getUserEndpoint<T>(userId));

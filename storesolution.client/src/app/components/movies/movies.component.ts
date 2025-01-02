@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInOut } from '../../services/configs/animations';
 import { Utilities } from '../../services/helper/utilities';
-import { SearchBoxComponent } from '../controls/search-box/search-box.component';
 import { Movie } from '../../models/store/movie.model';
 import { AppTranslationService } from '../../services/configs/translation.service';
 import { NgxDatatableModule, TableColumn } from '@siemens/ngx-datatable';
@@ -18,7 +17,7 @@ import { FormsModule } from '@angular/forms'
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
   animations: [fadeInOut],
-  imports: [SearchBoxComponent, TranslateModule, NgxDatatableModule, NgSelectModule, FormsModule]
+  imports: [TranslateModule, NgxDatatableModule, NgSelectModule, FormsModule]
 })
 export class MoviesComponent implements OnInit {
 
@@ -61,19 +60,9 @@ export class MoviesComponent implements OnInit {
     this.loadData();
   }
 
-  loadData() {
-    /*this.alertService.startLoadingMessage();
-    this.loadingIndicator = true;
-    this.movieService.getMovies()
-      .subscribe({
-        next: results => this.onDataLoadSuccessful(results),
-        error: error => this.onDataLoadFailed(error)
-      });*/
-  }
+  loadData() { }
 
   onSelectChange(event: any) {
-
-    console.log(event);
 
     this.movieService.getMoviesByEvent(event)
       .subscribe({

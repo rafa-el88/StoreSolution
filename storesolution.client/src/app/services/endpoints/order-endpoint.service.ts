@@ -17,7 +17,6 @@ export class OrderEndpoint extends EndpointBase {
 
   getOrdersEndpoint<T>(page?: number, pageSize?: number): Observable<T> {
     const endpointUrl = page && pageSize ? `${this.ordersUrl}/${page}/${pageSize}` : this.ordersUrl;
-    console.log(endpointUrl);
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getOrdersEndpoint<T>(page, pageSize));
